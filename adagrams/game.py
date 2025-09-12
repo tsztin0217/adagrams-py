@@ -29,6 +29,16 @@ LETTER_POOL = {
     'Z': 1
 }
 
+SCORE_DICT = {
+    1: ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'],
+    2: ['D', 'G'],
+    3: ['B', 'C', 'M', 'P'],
+    4: ['F', 'H', 'V', 'W', 'Y'],
+    5: ['K'],
+    8: ['J', 'X'],
+    10: ['Q', 'Z']
+}
+
 # create helper function to create a list of all available letters to use
 def create_letter_list():
     letters = ""
@@ -53,8 +63,8 @@ def draw_letters():
 
 def uses_available_letters(word, letter_bank):
     letters_available = letter_bank.copy()
-    input_word_list = list(word.upper())
-    for letter in input_word_list:
+
+    for letter in word.upper():
         if letter in letters_available:
             letters_available.remove(letter)
         else:
@@ -64,7 +74,18 @@ def uses_available_letters(word, letter_bank):
 
 
 def score_word(word):
-    pass
+    total = 0
+
+    if len(word) in [7, 8, 9, 10]:
+        total += 8
+
+    for letter in word.upper():
+        for score, letters in SCORE_DICT.items():
+            if letter in letters:
+                total += score
+    return total
+            
+    
 
 def get_highest_word_score(word_list):
     pass
