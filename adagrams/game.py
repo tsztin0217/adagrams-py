@@ -44,7 +44,7 @@ def draw_letters():
     letter_list = create_letter_list()
     hand = []
     while len(hand) < 10:
-        random_index = randint(0, len(letter_list))
+        random_index = randint(0, len(letter_list) - 1)
         hand.append(letter_list[random_index])
         letter_list.pop(random_index)
     return hand
