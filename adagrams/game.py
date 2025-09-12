@@ -52,7 +52,16 @@ def draw_letters():
 
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letters_available = letter_bank.copy()
+    input_word_list = list(word.upper())
+    for letter in input_word_list:
+        if letter in letters_available:
+            letters_available.remove(letter)
+        else:
+            return False
+    return True
+
+
 
 def score_word(word):
     pass
