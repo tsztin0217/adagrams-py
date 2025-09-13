@@ -93,18 +93,17 @@ def get_highest_word_score(word_list):
     highest_word = ""
 
     for word in word_list:
-        scores_dict[word] = score_word(word)
-        for scored_word, score in scores_dict.items():
+        scores_dict[word] = score_word(word) # first fill in the empty dict with all words from list
+        for scored_word, score in scores_dict.items(): # then loop through the filled dictionary
             if score > highest_score:
-                highest_score = score
+                highest_score = score # every time we get a higher score we replace the highest_score with current score
                 highest_word = scored_word
-            elif score == highest_score:
+            elif score == highest_score: # tie-breaking logic
+                # if tied in both length and score:
                 if score == highest_score and len(scored_word) == len(highest_word):
-                    if len(highest_word) == 10:
-                        return(highest_word, highest_score)
-                    else:
-                        highest_word = scored_word
-                        highest_score = score
+                    if len(highest_word) == 10: # since highest_word in before current word, we choose highest_word because it appears earlier
+                        return(highest_word, highest_score) # stops here since 10 letters take priority
+                # if there's a ten-letter word
                 elif len(scored_word) == 10:
                     highest_word = scored_word
                     highest_score = score
